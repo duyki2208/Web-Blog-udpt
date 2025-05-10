@@ -5,7 +5,7 @@ updated: "2025-04-29"
 categories:
   
   - "Lê Hùng Duy"
-coverImage: "/images/jefferson-santos-fCEJGBzAkrU-unsplash.jpg"
+coverImage: "/images/pig.png"
 coverWidth: 16
 coverHeight: 9
 excerpt: Ấn để xem thêm...
