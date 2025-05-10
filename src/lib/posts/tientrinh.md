@@ -5,7 +5,7 @@ updated: "2025-05-0606"
 categories:
   
   - "Lê Hùng Duy"
-coverImage: "/images/wallpaper.jpg"
+coverImage: "/static/images/wallpaper.jpg"
 coverWidth: 16
 coverHeight: 9
 excerpt: Ấn để xem thêm...
@@ -14,9 +14,11 @@ excerpt: Ấn để xem thêm...
 ## Bài tập 1: ##
 
 ## Tên sản phẩm : Dell Vostro 5415 
+![alt text](../../../images/dellvostro5415.jpg)
 
 ## Thông số kỹ thuật
 
+![alt text](../../../images/aboutlaptop.png)
 **CPU:** 8GB DDR4 (tốc độ 3200 MHz) 
 
 **GPU:** AMD Radeon RX Vega 6 
