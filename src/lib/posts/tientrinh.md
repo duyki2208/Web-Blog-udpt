@@ -81,7 +81,7 @@ Dưới đây là 12 bài toán phổ biến trong ngành Công nghệ Thông ti
 
 ## Bài tập 3
 
-![alt text](../../../static/images/cheptay.jpg)
+![alt text](../../../images/cheptay.jpg)
 
 
 ### **Giải thích**
