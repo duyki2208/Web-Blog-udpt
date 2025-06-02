@@ -1,5 +1,5 @@
 ---
-title: " Bài giữa kì"
+title: " Bài giữa kì - Deliverable 1"
 date: "2025-05-12"
 updated: "2025-05-12"
 categories:
