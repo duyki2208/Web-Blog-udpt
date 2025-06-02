@@ -156,7 +156,7 @@ excerpt: Ấn để xem thêm...
 
 ## 6. Deployment Automation
 
-### Đã đáp ứng tốttốt
+### Đã đáp ứng tốt
 
 **Điểm mạnh:**
 

@@ -10,65 +10,152 @@ coverHeight: 9
 excerpt: Ấn để xem thêm...
 ---
 
-## **Deliverable 2: Thiết kế hệ thống**
 
-### 1. Bản vẽ kiến trúc hệ thống
 
-```
-+-------------------+
-|    Người dùng     |
-+--------+----------+
-         |
-         v
-+--------+----------+
-|   Ứng dụng Todo   |  (CLI hoặc Web)
-+--------+----------+
-         |
-         v
-+--------+----------+
-|    pupdb (JSON)   |
-+-------------------+
-```
+## 1. Bản vẽ kiến trúc hệ thống
+
+![alt text](../../../images/kientruchethongtodolist.png)
 
 ---
 
-### 2. Mô tả chi tiết các thành phần trong hệ thống
+## 2. Mô tả chi tiết các thành phần trong hệ thống
 
-- **Người dùng:**  
-  Tương tác với ứng dụng qua giao diện dòng lệnh (CLI) hoặc web (Flask).
 
-- **Ứng dụng Todo list:**
+### 1. Frontend (Web Browser)
+**Vai trò:**
+- Hiển thị giao diện người dùng
+- Xử lý tương tác người dùng
+- Gửi/nhận dữ liệu từ server
 
-  - Xử lý logic nghiệp vụ: thêm, sửa, xóa, hiển thị, đánh dấu hoàn thành task.
-  - Giao tiếp với pupdb để lưu trữ và truy xuất dữ liệu.
+**Cách hoạt động:**
+- Sử dụng React để xây dựng Single Page Application
+- Gửi request đến backend qua REST API
+- Nhận real-time updates qua WebSocket
+- Quản lý state và UI updates
 
-- **PPupdb:**
+### 2. API Gateway
+**Vai trò:**
+- Quản lý và định tuyến các request
+- Bảo mật hệ thống
+- Kiểm soát lưu lượng
 
-  - Lưu trữ dữ liệu dưới dạng file JSON.
-  - Đóng vai trò là database đơn giản cho ứng dụng.
+**Cách hoạt động:**
+- Nhận request từ client
+- Kiểm tra authentication
+- Chuyển tiếp request đến backend
+- Trả về response cho client
 
-- **Giao thức giao tiếp:**
+### 3. Backend Server (Flask)
+**Vai trò:**
+- Xử lý business logic
+- Quản lý database
+- Xử lý authentication
+- Quản lý sessions
 
-  - Nếu là CLI: giao tiếp qua dòng lệnh.
-  - Nếu là web: giao tiếp HTTP (Flask).
+**Cách hoạt động:**
+- Nhận request từ API Gateway
+- Xử lý logic nghiệp vụ
+- Tương tác với database
+- Trả về kết quả cho client
 
-- **Thuật toán/Logic:**
-  - CRUD cơ bản: Thêm, sửa, xóa, đọc dữ liệu.
-  - Không sử dụng sharding/replication do ứng dụng nhỏ, đơn giản.
+### 4. Database (PupDB)
+**Vai trò:**
+- Lưu trữ dữ liệu
+- Quản lý transactions
+- Đảm bảo data consistency
+
+**Cách hoạt động:**
+- Lưu trữ dữ liệu dưới dạng file
+- Tự động backup
+- Xử lý concurrent access
+- Quản lý data integrity
+
+### 5. Giao Thức Giao Tiếp
+
+#### 1. **REST API**
+
+**Vai trò:**
+- Giao tiếp giữa client và server
+- Xử lý CRUD operations
+- Quản lý resources
+
+**Cách hoạt động:**
+- Sử dụng HTTP methods (GET, POST, PUT, DELETE)
+- Dữ liệu được truyền dưới dạng JSON
+- Mỗi request là độc lập
+- Sử dụng status codes để thông báo kết quả
+
+#### 2. WebSocket
+**Vai trò:**
+- Real-time communication
+- Bi-directional data flow
+- Event handling
+
+**Cách hoạt động:**
+- Duy trì kết nối liên tục
+- Gửi/nhận dữ liệu real-time
+- Tự động reconnect khi mất kết nối
+- Xử lý events
+
+### 6. Storage System
+**Vai trò:**
+- Lưu trữ static files
+- Quản lý user uploads
+- Cache management
+
+**Cách hoạt động:**
+- Lưu trữ file trên local filesystem
+- Quản lý file permissions
+- Xử lý file operations
+- Cache frequently accessed data
+
+### 7. Monitoring System
+**Vai trò:**
+- Theo dõi hệ thống
+- Ghi log
+- Báo lỗi
+
+**Cách hoạt động:**
+- Ghi log các events và errors
+- Theo dõi performance
+- Gửi alerts khi có vấn đề
+- Tạo reports
+
 
 ---
 
-### 3. Công nghệ và thư viện sử dụng
+## 3. Công nghệ và thư viện sử dụng
 
-- **Python:** Ngôn ngữ lập trình chính.
-- **Pupdb:** Thư viện lưu trữ dữ liệu key-value.
-- **Flask (nếu làm web):** Xây dựng giao diện web đơn giản.
-- **Click/argparse (nếu làm CLI):** Xử lý tham số dòng lệnh.
-- **Lý do chọn:**
-  - Đơn giản, dễ học, phù hợp với quy mô đề tài.
-  - pupdb giúp lưu trữ dữ liệu nhanh, không cần cài đặt phức tạp.
+1. **Flask** 
+- Đơn giản, dễ học và sử dụng
+- Microframework phù hợp cho ứng dụng nhỏ
 
----
+2. **React (Frontend Framework)**
+
+- Component-based architecture giúp code dễ quản lý
+- Virtual DOM cho performance tốt
+
+3. **PupDB** 
+- File-based database đơn giản
+- Không cần setup phức tạp
+
+4. **REST API + WebSocket**
+
+- REST API: Standard và widely used
+- WebSocket: Real-time communication
+
+5. **Docker** 
+
+- Environment consistency
+- Easy deployment
+
+6. **Material-UI** 
+
+- Modern và đẹp
+- Responsive design
+
+
+
 
 ### 4. Mô hình dữ liệu (Database Model)
 
@@ -98,11 +185,33 @@ excerpt: Ấn để xem thêm...
 
 ---
 
-### 5. Chiến lược triển khai và cấu hình hệ thống
+## 5. Chiến lược triển khai và cấu hình hệ thống
 
-- **Triển khai:**
-  - Ứng dụng chạy trực tiếp trên máy cá nhân, không cần server riêng.
-  - Nếu cần, có thể đóng gói bằng Docker để dễ triển khai trên nhiều môi trường.
-- **Cấu hình:**
-  - Cài đặt Python, pip, thư viện pupdb.
-  - Cấu hình đường dẫn file lưu trữ dữ liệu (mặc định là file JSON trong thư mục dự án).
+1. **Containerization với Docker**
+- **Dockerfile** cho mỗi service
+- **Docker Compose** cho development
+- **Kubernetes** cho production
+
+2. **Cloud Deployment trên AWS**
+- **EC2** cho ứng dụng
+- **RDS** cho database
+- **S3** cho storage
+- **CloudFront** cho CDN
+
+3. **CI/CD Pipeline**
+- **GitHub Actions** cho automation
+- **Automated testing**
+- **Automated deployment**
+- **Environment management**
+
+4. **Monitoring và Logging**
+- **CloudWatch** cho monitoring
+- **ELK Stack** cho logging
+- **Alert system** cho errors
+
+5. **Backup và Recovery**
+- **Daily backups**
+- **Cross-region replication**
+- **Disaster recovery plan**
+
+
